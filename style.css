@@ -1,0 +1,23 @@
+@font-face {
+    font-family: pico_mono;
+    src: url(pico-8-mono.ttf);
+    font-weight: bold;
+}
+
+
+
+body {
+    background-color: #ffffff;
+}
+
+h1 {
+    /*noinspection CssNoGenericFontName*/
+    font-family: pico_mono;
+    color: #000000;
+    margin-left: 20px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+}
