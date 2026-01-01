@@ -15,6 +15,12 @@ h1 {
     font-family: pico_mono;
     color: #000000;
     margin-left: 20px;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .topbar {
