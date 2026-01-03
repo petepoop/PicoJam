@@ -1,4 +1,4 @@
-const maxHealth = 10;
+let maxHealth = 10;
 let health = maxHealth;
 
 function displayHealth() {

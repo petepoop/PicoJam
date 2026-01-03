@@ -4,16 +4,20 @@
     font-weight: bold;
 }
 
-
-
 body {
-    background-color: #ffffff;
+    background-color: #000000;
+    display: grid;
+    place-items: center;
+    margin: 0;
+    padding: 0;
+    font-family: pico_mono;
+    color: #f5f5f5;
 }
 
-h1 {
+p, h1, h3 {
     /*noinspection CssNoGenericFontName*/
     font-family: pico_mono;
-    color: #000000;
+    color: #f5f5f5;
     margin-left: 20px;
 
     -webkit-touch-callout: none;
@@ -23,7 +27,29 @@ h1 {
     user-select: none;
 }
 
-.topbar {
+.main {
     display: flex;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
+    width: 100%;
+}
+
+.left {
+    width: 32%;
+    text-align: left;
+}
+
+.center {
+    width: 36%;
+    text-align: center;
+}
+
+.right {
+    width: 32%;
+    text-align: right;
+}
+
+.halfvhbr {
+    display: block;
+    content: "";
+    margin-top: 50vh;
 }
