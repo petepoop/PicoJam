@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="style.css">
+    <script src="gameManager.js"></script>
     <script src="eventsHandlers.js"></script>
     <script src="player.js"></script>
     <script src="renderer.js"></script>
@@ -9,7 +10,8 @@
     <title>Apocalypse Clicker</title>
 </head>
     <script>
-        window.onload = renderWorld
+        window.onload = onStart
+        setInterval(onTick, 10);
     </script>
     <body>
         <div class="main">

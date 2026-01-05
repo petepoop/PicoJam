@@ -3,9 +3,6 @@ const height = 15;
 
 let pixels = []
 
-
-clearPixels()
-
 function clearPixels() {
     pixels = []
     let row;
@@ -25,13 +22,13 @@ function clearPixels() {
 
 function renderWorld(){
     let text = ""
-    text = renderPixel(document.getElementById("world-text"), text)
+    text = renderPixels(document.getElementById("world-text"), text)
     document.getElementById("world-text").innerHTML = text
 
     addClickEvents()
 }
 
-function renderPixel(element, text){
+function renderPixels(element, text){
     text += "0".repeat(width + 2) + "<br>"
     for (let y = height - 1; y >= 0; y--) {
         text += "0"
