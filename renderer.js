@@ -27,7 +27,8 @@ function clearPixels() {
                 x: x,
                 y: y,
                 color: "blue",
-                char: 0
+                char: 0,
+                gameObjectId: -1
             });
         }
         pixels.push(row)
@@ -70,11 +71,13 @@ function addClickEvents(){
     for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
             const pixelText = document.getElementById(`x${x}y${y}`)
-            pixelText.onclick = () => {onPixelClicked(x, y)}
+            pixelText.onclick = () => {onPixelClicked(pixels[y][x])}
         }
     }
 }
 
-function onPixelClicked(x, y){
-    console.log(`clicked pixel x${x}y${y}`)
+function onPixelClicked(pixel){
+    if (pixel.gameObjectId !== -1){
+        onGameObjectClicked(gameObjects[pixel.gameObjectId])
+    }
 }

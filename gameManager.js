@@ -7,7 +7,11 @@ function onStart(){
 }
 
 function onTick(){
+    //Add game loop here
+}
 
+function onGameObjectClicked(gameObject){
+    console.log("Clicked " + gameObject.name)
 }
 
 function initGameObjects(){
