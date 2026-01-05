@@ -26,8 +26,9 @@ function clearPixels() {
 function renderWorld(){
     let text = ""
     text = renderPixel(document.getElementById("world-text"), text)
-
     document.getElementById("world-text").innerHTML = text
+
+    addClickEvents()
 }
 
 function renderPixel(element, text){
@@ -36,10 +37,24 @@ function renderPixel(element, text){
         text += "0"
         for (let x = 0; x < width; x++) {
             const pixel = pixels[y][x]
-            text += `<span style=\"color:${pixel.color}\">${pixel.char}</span>`
+            text += `<span id=x${x}y${y} style=\"color:${pixel.color}\">${pixel.char}</span>`
         }
         text += "0<br>"
     }
     text += "0".repeat(width + 2) + "<br>"
     return text
+}
+
+
+function addClickEvents(){
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            const pixelText = document.getElementById(`x${x}y${y}`)
+            pixelText.onclick = () => {onPixelClicked(x, y)}
+        }
+    }
+}
+
+function onPixelClicked(x, y){
+    console.log(`clicked pixel x${x}y${y}`)
 }
