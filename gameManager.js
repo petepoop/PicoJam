@@ -8,6 +8,14 @@ function onStart(){
 
 function onTick(){
     //Add game loop here
+    //Mock game loop-----------
+    gameObjects[0].y += 1
+    if (gameObjects[0].y > 10){
+        gameObjects[0].y = 2
+    }
+    //---------------------------
+
+    renderWorld(gameObjects)
 }
 
 function onGameObjectClicked(gameObject){
@@ -18,7 +26,7 @@ function initGameObjects(){
     gameObjects.push({
         name: "mock_object1",
         x: 5,
-        y: 5,
+        y: 2,
         sprite: createSquareSprite(4)
     })
 
