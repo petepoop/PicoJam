@@ -3,6 +3,20 @@ const height = 15;
 
 let pixels = []
 
+function renderWorld(gameObjects){
+    clearPixels()
+
+    for (let i = 0; i < gameObjects.length; i++){
+        pasteGameObject(gameObjects[i], i)
+    }
+
+    let text = ""
+    text = renderPixels(document.getElementById("world-text"), text)
+    document.getElementById("world-text").innerHTML = text
+
+    addClickEvents()
+}
+
 function clearPixels() {
     pixels = []
     let row;
@@ -20,12 +34,21 @@ function clearPixels() {
     }
 }
 
-function renderWorld(){
-    let text = ""
-    text = renderPixels(document.getElementById("world-text"), text)
-    document.getElementById("world-text").innerHTML = text
+function pasteGameObject(gameObject, id){
+    gameObject.sprite.forEach((spritePixel) => {
+        const x = gameObject.x + spritePixel.x
+        const y = gameObject.y + spritePixel.y
 
-    addClickEvents()
+        if (x >= 0 && x < width && y >= 0 && y < height){
+            pixels[y][x] = {
+                x: x,
+                y: y,
+                color: spritePixel.color,
+                char: spritePixel.char,
+                gameObjectId: id
+            }
+        }
+    });
 }
 
 function renderPixels(element, text){
