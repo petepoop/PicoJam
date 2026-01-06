@@ -53,16 +53,16 @@ function pasteGameObject(gameObject, id){
 }
 
 function renderPixels(element, text){
-    text += "0".repeat(width + 2) + "<br>"
+    text += "-".repeat(width + 2) + "<br>"
     for (let y = height - 1; y >= 0; y--) {
-        text += "0"
+        text += "|"
         for (let x = 0; x < width; x++) {
             const pixel = pixels[y][x]
             text += `<span id=x${x}y${y} style=\"color:${pixel.color}\">${pixel.char}</span>`
         }
-        text += "0<br>"
+        text += "|<br>"
     }
-    text += "0".repeat(width + 2) + "<br>"
+    text += "-".repeat(width + 2) + "<br>"
     return text
 }
 
