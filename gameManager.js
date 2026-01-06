@@ -6,6 +6,10 @@ function onStart(){
     renderWorld(gameObjects)
 }
 
+function getrandint(min, max){
+    return Math.floor(Math.random() * ((max - min + 1) + min))
+}
+
 function onTick(){
     //Add game loop here
     //Mock game loop-----------
@@ -14,6 +18,11 @@ function onTick(){
         gameObjects[0].y = 2
     }
     //---------------------------
+
+    //1 in 2500 chance of an event each tick, since ticks take 500ms
+    if(getrandint(1,2500) == 1){
+        //TODO new event
+    }
 
     renderWorld(gameObjects)
 }
