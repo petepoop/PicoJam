@@ -1,5 +1,5 @@
 {
-    "DEV COMMENT":[
+    "comment":[
         {"Weight = statistical likelyhood of an event. Events have IDs and options go with those IDs. The bonuses in the options are":""},
         {"not linear, it is ([1 second of resource gain] * bonus resource value) so it can scale":"values of zero aren't counted, e.g if faith"},
         {"is 0 but the bonus from an event option is 50, 0*50 is still 0. So like with other 0 values it's not displayed to the user":""},

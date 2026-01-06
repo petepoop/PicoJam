@@ -1,16 +1,19 @@
 gameObjects = []
-
+let events = null
 
 function onStart(){
+    loadAssets()
     initGameObjects()
     renderWorld(gameObjects)
 }
 
-function getrandint(min, max){
+function get_rand_int(min, max){
     return Math.floor(Math.random() * ((max - min + 1) + min))
 }
 
 function onTick(){
+    if (!events) return
+
     //Add game loop here
     //Mock game loop-----------
     gameObjects[0].y += 1
@@ -20,8 +23,10 @@ function onTick(){
     //---------------------------
 
     //1 in 2500 chance of an event each tick, since ticks take 500ms
-    if(getrandint(1,2500) == 1){
+    if(get_rand_int(1,2) == 1){
         //TODO new event
+        ev = gameEvent()
+        console.log(ev.title)
     }
 
     renderWorld(gameObjects)
@@ -60,4 +65,23 @@ function createSquareSprite(size){
         }
     }
     return pixels
+}
+
+async function loadAssets() {
+    const response = await fetch('assets.json')
+    const data = await response.json()
+    events = data.events
+}
+
+function gameEvent() {
+    let totalWeight = events.reduce((sum, event) => sum + event.weight, 0)
+    let random = Math.random() * totalWeight
+    let weightSum = 0
+    
+    for (let event of events) {
+        weightSum += event.weight
+        if (random <= weightSum) {
+            return event
+        }
+    }
 }
