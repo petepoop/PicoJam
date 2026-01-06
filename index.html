@@ -6,12 +6,14 @@
     <script src="eventsHandlers.js"></script>
     <script src="player.js"></script>
     <script src="renderer.js"></script>
+    <script src="formatter.js"></script>
     <meta charset="UTF-8">
     <title>Apocalypse Clicker</title>
 </head>
     <script>
         window.onload = onStart
         setInterval(onTick, 500);
+        setInterval(resourceTick, 1000)
     </script>
     <body>
         <div class="main">

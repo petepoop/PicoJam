@@ -1,6 +1,8 @@
 gameObjects = []
 let events = null
 
+let event_ongoing = false
+
 
 //Resources
 let gold = 0
@@ -37,15 +39,22 @@ function onTick(){
     }
     //---------------------------
 
-    calcResources()
-    //1 in 2500 chance of an event each tick, since ticks take 500ms
+    //1 in X chance of an event each tick, since ticks take 500ms
     if(get_rand_int(1,20) == 1){
         //TODO finish events
-        ev = gameEvent()
-        console.log(ev.title)
+        if(!event_ongoing){
+            ev = gameEvent()
+            console.log(ev.title)
+            //set to false after player resolves the event
+            event_ongoing = true
+        }
     }
 
     renderWorld(gameObjects)
+}
+
+function resourceTick(){
+    calcResources()
 }
 
 function onGameObjectClicked(gameObject){
@@ -113,18 +122,36 @@ gold_per_tick = base + (2 * Farm level) * 1.00 + (1*research_bonus_percent) * Fa
     */
     research += research_per_tick
 
+    if(gold < 0){
+        gold = 0;
+    }
+
+    if(followers < 0){
+        followers = 0;
+    }
+
+    if(faith < 0){
+        faith = 0;
+    }
+
+    if(ores < 0){
+        ores = 0;
+    }
+
+    if(research < 0){
+        research = 0;
+    }
+
     displayResources()
 }
 
 function displayResources(){
-    //TODO make robust for large numbers
-    
     let text = document.getElementById("goldDisplay")
-    text.innerText = "Gold: " + gold
+    text.innerText = "Gold: " + nf(gold)
     
     if(followers > 0){
         text = document.getElementById("followersDisplay")
-        text.innerText = "Followers: " + followers
+        text.innerText = "Followers: " + nf(followers)
     }else{
         text = document.getElementById("followersDisplay")
         text.innerText = "???"
@@ -132,7 +159,7 @@ function displayResources(){
 
     if(faith > 0){
         text = document.getElementById("faithDisplay")
-        text.innerText = "Faith: " + faith
+        text.innerText = "Faith: " + nf(faith)
     }else if(followers > 0){
         text = document.getElementById("faithDisplay")
         text.innerText = "???"
@@ -143,7 +170,7 @@ function displayResources(){
 
     if(ores > 0){
         text = document.getElementById("oresDisplay")
-        text.innerText = "Ores: " + ores
+        text.innerText = "Ores: " + nf(ores)
     }else if(faith > 0){
         text = document.getElementById("oresDisplay")
         text.innerText = "???"
