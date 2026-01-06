@@ -39,17 +39,17 @@ h2{
 }
 
 .left {
-    width: 32%;
+    width: 25%;
     text-align: left;
 }
 
 .center {
-    width: 40%;
+    width: 50%;
     text-align: center;
 }
 
 .right {
-    width: 28%;
+    width: 25%;
     text-align: right;
 }
 
