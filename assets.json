@@ -1,0 +1,75 @@
+{
+    "DEV COMMENT":[
+        {"Weight = statistical likelyhood of an event. Events have IDs and options go with those IDs. The bonuses in the options are":""},
+        {"not linear, it is ([1 second of resource gain] * bonus resource value) so it can scale":"values of zero aren't counted, e.g if faith"},
+        {"is 0 but the bonus from an event option is 50, 0*50 is still 0. So like with other 0 values it's not displayed to the user":""},
+        {"idk what to do if an ore focused event appears before the player has a mine":""}
+    ],
+    "events": [
+        {"ID":0, "positive":true, "weight":6, "title":"Bumper crop", "description":"The crops are doing extremely well this year!"},
+        {"ID":1, "positive":true, "weight":1, "title":"Desperate workers", "description":"A group of hungry looking men show up looking for work"},
+        {"ID":2, "positive":false, "weight":5, "title":"Blight", "description":"A blight is killing your crops!"},
+        {"ID":3, "positive":false, "weight":3, "title":"Plague", "description":"These are dark times indeed..."},
+        {"ID":4, "positive":true, "weight":3, "title":"Large vein", "description":"Prospectors have discovered a massive vein of ore!"},
+        {"ID":5, "positive":true, "weight":1, "title":"Meteor", "description":"A meteor has landed nearby"}
+    ],
+    "options": [
+        {"ID":0, "title":"Give the extra crops away", "bonuses":[
+            {"gold":0, "followers":300, "faith":0, "ores":0, "research":0}
+        ]},
+        {"ID":0, "title":"It was a sign!", "bonuses":[
+            {"gold":0, "followers":0, "faith":650, "ores":0, "research":0}
+        ]},
+        {"ID":0, "title":"Take the crops to market", "bonuses":[
+            {"gold":600, "followers":0, "faith":0, "ores":0, "research":0}
+        ]},
+        {"ID":1, "title":"They should do farm work", "bonuses":[
+            {"gold":500, "followers":0, "faith":0, "ores":0, "research":0}
+        ]},
+        {"ID":1, "title":"Convince them to join", "bonuses":[
+            {"gold":-250, "followers":300, "faith":0, "ores":0, "research":0}
+        ]},
+        {"ID":1, "title":"Send them into the mines!", "bonuses":[
+            {"gold":-250, "followers":0, "faith":0, "ores":300, "research":0}
+        ]},
+        {"ID":1, "title":"Sacrifice them", "bonuses":[
+            {"gold":0, "followers":-250, "faith":1020, "ores":0, "research":0}
+        ]},
+        {"ID":2, "title":"Pay an expert", "bonuses":[
+            {"gold":-250, "followers":0, "faith":0, "ores":0, "research":0}
+        ]},
+        {"ID":2, "title":"Ration the food to your followers", "bonuses":[
+            {"gold":0, "followers":-250, "faith":0, "ores":0, "research":0}
+        ]},
+        {"ID":2, "title":"Pray", "bonuses":[
+            {"gold":0, "followers":0, "faith":-1000, "ores":0, "research":0}
+        ]},
+        {"ID":3, "title":"Find a plague doctor", "bonuses":[
+            {"gold":-500, "followers":0, "faith":0, "ores":0, "research":0}
+        ]},
+        {"ID":3, "title":"Let them die", "bonuses":[
+            {"gold":0, "followers":-500, "faith":0, "ores":0, "research":0}
+        ]},
+        {"ID":3, "title":"Pray", "bonuses":[
+            {"gold":0, "followers":0, "faith":-2000, "ores":0, "research":0}
+        ]},
+        {"ID":4, "title":"Mine it!", "bonuses":[
+            {"gold":0, "followers":0, "faith":0, "ores":900, "research":0}
+        ]},
+        {"ID":4, "title":"Sell the extra ores", "bonuses":[
+            {"gold":550, "followers":0, "faith":0, "ores":0, "research":0}
+        ]},
+        {"ID":5, "title":"Mine it!", "bonuses":[
+            {"gold":0, "followers":0, "faith":0, "ores":800, "research":0}
+        ]},
+        {"ID":5, "title":"Sell it", "bonuses":[
+            {"gold":750, "followers":0, "faith":0, "ores":0, "research":0}
+        ]},
+        {"ID":5, "title":"Study it", "bonuses":[
+            {"gold":0, "followers":0, "faith":0, "ores":0, "research":1000}
+        ]},
+        {"ID":5, "title":"It was divine intervention!", "bonuses":[
+            {"gold":0, "followers":100, "faith":1000, "ores":0, "research":0}
+        ]}
+    ]
+}
