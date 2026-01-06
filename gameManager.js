@@ -1,6 +1,21 @@
 gameObjects = []
 let events = null
 
+
+//Resources
+let gold = 0
+let followers = 0
+let faith = 0
+let ores = 0
+let research = 0
+
+let gold_per_tick = 0
+let followers_per_tick = 0
+let faith_per_tick = 0
+let ores_per_tick = 0
+let research_per_tick = 0
+
+
 function onStart(){
     loadAssets()
     initGameObjects()
@@ -22,9 +37,10 @@ function onTick(){
     }
     //---------------------------
 
+    calcResources()
     //1 in 2500 chance of an event each tick, since ticks take 500ms
-    if(get_rand_int(1,2) == 1){
-        //TODO new event
+    if(get_rand_int(1,20) == 1){
+        //TODO finish events
         ev = gameEvent()
         console.log(ev.title)
     }
@@ -65,6 +81,80 @@ function createSquareSprite(size){
         }
     }
     return pixels
+}
+
+function calcResources() {
+/*TODO calculate resources here based on upgrades, research, etc. e.g,
+gold_per_tick = base + (2 * Farm level) * 1.00 + (1*research_bonus_percent) * FarmToggled (boolean on whether or not a building is enabled)
+*/
+    gold_per_tick = 0.2
+
+    gold += gold_per_tick
+
+    followers_per_tick = 0
+
+    followers += followers_per_tick
+
+    //see in Desmos if you want the full picture. Research should improve this formula. Adjust as needed
+    faith_per_tick = followers >= 100 ? Math.floor(Math.sqrt(followers) * 0.2) : 0
+
+    faith += faith_per_tick
+
+    ores_per_tick = 0
+
+    ores += ores_per_tick
+
+    //Research should only increment if the player is actively researching something
+    /*if(researching){
+        research_per_tick = base + (2 * Library level) * 1.00 + (1*research_bonus_percent) * LibraryToggled
+    }else{
+        research_per_tick = 0
+    }
+    */
+    research += research_per_tick
+
+    displayResources()
+}
+
+function displayResources(){
+    //TODO make robust for large numbers
+    
+    let text = document.getElementById("goldDisplay")
+    text.innerText = "Gold: " + gold
+    
+    if(followers > 0){
+        text = document.getElementById("followersDisplay")
+        text.innerText = "Followers: " + followers
+    }else{
+        text = document.getElementById("followersDisplay")
+        text.innerText = "???"
+    }
+
+    if(faith > 0){
+        text = document.getElementById("faithDisplay")
+        text.innerText = "Faith: " + faith
+    }else if(followers > 0){
+        text = document.getElementById("faithDisplay")
+        text.innerText = "???"
+    }else{
+        text = document.getElementById("faithDisplay")
+        text.innerText = " "
+    }
+
+    if(ores > 0){
+        text = document.getElementById("oresDisplay")
+        text.innerText = "Ores: " + ores
+    }else if(faith > 0){
+        text = document.getElementById("oresDisplay")
+        text.innerText = "???"
+    }else{
+        text = document.getElementById("oresDisplay")
+        text.innerText = " "
+    }
+
+
+
+    //TODO display research
 }
 
 async function loadAssets() {
