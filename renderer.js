@@ -3,12 +3,8 @@ const height = 15;
 
 let pixels = []
 
-function renderWorld(gameObjects){
-    clearPixels()
-
-    for (let i = 0; i < gameObjects.length; i++){
-        pasteGameObject(gameObjects[i], i)
-    }
+function initWorld(){
+    initPixels()
 
     let text = ""
     text = renderPixels(document.getElementById("world-text"), text)
@@ -17,7 +13,17 @@ function renderWorld(gameObjects){
     addClickEvents()
 }
 
-function clearPixels() {
+function renderWorld(gameObjects){
+    clearPixels()
+
+    for (let i = 0; i < gameObjects.length; i++){
+        pasteGameObject(gameObjects[i], i)
+    }
+
+    editPixels()
+}
+
+function initPixels() {
     pixels = []
     let row;
     for (let y = 0; y < height; y++) {
@@ -32,6 +38,17 @@ function clearPixels() {
             });
         }
         pixels.push(row)
+    }
+}
+
+
+function clearPixels() {
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            pixels[y][x].color = "blue"
+            pixels[y][x].char = 0
+            pixels[y][x].gameObjectId = -1
+        }
     }
 }
 
@@ -66,6 +83,15 @@ function renderPixels(element, text){
     return text
 }
 
+function editPixels(){
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            const pixelText = document.getElementById(`x${x}y${y}`)
+            pixelText.style.color = pixels[y][x].color
+            pixelText.innerText = pixels[y][x].char
+        }
+    }
+}
 
 function addClickEvents(){
     for (let y = 0; y < height; y++) {

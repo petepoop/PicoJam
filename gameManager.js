@@ -21,7 +21,7 @@ let research_per_tick = 0
 function onStart(){
     loadAssets()
     initGameObjects()
-    renderWorld(gameObjects)
+    initWorld()
 }
 
 function onTick(){
@@ -81,7 +81,7 @@ function createSquareSprite(size){
                 x: x,
                 y: y,
                 color: "red",
-                char: 0
+                char: "+"
             });
         }
     }
