@@ -1,5 +1,5 @@
-import type { Pixel, GameObject } from "./types";
-import {onGameObjectClicked} from "./gameManager"
+import type { Pixel, GameObject } from "./types.js";
+import {onGameObjectClicked} from "./gameManager.js"
 
 const width = 30;
 const height = 15;

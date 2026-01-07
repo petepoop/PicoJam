@@ -1,7 +1,7 @@
-import type {Pixel, GameObject, Event} from "./types";
-import {initWorld, renderWorld} from "./renderer";
-import {getRandInt} from "./utills";
-import {nf} from "./formatter";
+import type {Pixel, GameObject, Event} from "./types.js";
+import {initWorld, renderWorld} from "./renderer.js";
+import {getRandInt} from "./utills.js";
+import {nf} from "./formatter.js";
 
 let gameObjects: GameObject[] = []
 let events: Event[] = []
