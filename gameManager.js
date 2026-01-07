@@ -24,10 +24,6 @@ function onStart(){
     renderWorld(gameObjects)
 }
 
-function get_rand_int(min, max){
-    return Math.floor(Math.random() * ((max - min + 1) + min))
-}
-
 function onTick(){
     if (!events) return
 
@@ -40,7 +36,7 @@ function onTick(){
     //---------------------------
 
     //1 in X chance of an event each tick, since ticks take 500ms
-    if(get_rand_int(1,20) == 1){
+    if(getRandInt(1,20) === 1){
         //TODO finish events
         if(!event_ongoing){
             ev = gameEvent()
