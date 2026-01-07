@@ -11,7 +11,7 @@
     <script type="module">
         import { onStart, onTick, resourceTick } from "/dist/gameManager.js"
 
-        window.onload = () => onStart
+        window.onload = onStart
         setInterval(onTick, 20);
         setInterval(resourceTick, 1000)
     </script>

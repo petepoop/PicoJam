@@ -12,7 +12,7 @@ export function initWorld(){
     let text = ""
     text = renderPixels(text)
 
-    document.getElementById("world-text")!.innerText = text
+    document.getElementById("world-text")!.innerHTML = text
 
     addClickEvents()
 }
