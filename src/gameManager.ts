@@ -187,7 +187,7 @@ function displayResources(){
 }
 
 async function loadAssets() {
-    const response = await fetch('assets.json')
+    const response = await fetch('../eventsData.json')
     const data = await response.json()
     events = data.events
 }
