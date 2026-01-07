@@ -23,13 +23,13 @@ let ores_per_tick = 0
 let research_per_tick = 0
 
 
-function onStart(){
+export function onStart(){
     loadAssets()
     initGameObjects()
     initWorld()
 }
 
-function onTick(){
+export function onTick(){
     if (!events) return
 
     //Add game loop here
@@ -54,7 +54,7 @@ function onTick(){
     renderWorld(gameObjects)
 }
 
-function resourceTick(){
+export function resourceTick(){
     calcResources()
 }
 
