@@ -1,5 +1,10 @@
-gameObjects = []
-let events = null
+import type {Pixel, GameObject, Event} from "./types";
+import {initWorld, renderWorld} from "./renderer";
+import {getRandInt} from "./utills";
+import {nf} from "./formatter";
+
+let gameObjects: GameObject[] = []
+let events: Event[] = []
 
 let event_ongoing = false
 
@@ -29,9 +34,9 @@ function onTick(){
 
     //Add game loop here
     //Mock game loop-----------
-    gameObjects[0].y += 1
-    if (gameObjects[0].y > 10){
-        gameObjects[0].y = 2
+    gameObjects[0]!.y += 1
+    if (gameObjects[0]!.y > 10){
+        gameObjects[0]!.y = 2
     }
     //---------------------------
 
@@ -39,8 +44,8 @@ function onTick(){
     if(getRandInt(1,20) === 1){
         //TODO finish events
         if(!event_ongoing){
-            ev = gameEvent()
-            console.log(ev.title)
+            let ev= gameEvent()
+            console.log(ev?.title)
             //set to false after player resolves the event
             event_ongoing = true
         }
@@ -53,8 +58,8 @@ function resourceTick(){
     calcResources()
 }
 
-function onGameObjectClicked(gameObject){
-    console.log("Clicked " + gameObject.name)
+export function onGameObjectClicked(gameObjectID: number){
+    console.log("Clicked " + gameObjects[gameObjectID])
 }
 
 function initGameObjects(){
@@ -73,15 +78,16 @@ function initGameObjects(){
     })
 }
 
-function createSquareSprite(size){
-    pixels = []
+function createSquareSprite(size: number){
+    let pixels: Pixel[] = []
     for (let y = 0; y < size; y++) {
         for (let x = 0; x < size; x++) {
             pixels.push({
                 x: x,
                 y: y,
                 color: "red",
-                char: "+"
+                char: "+",
+                gameObjectId: -1
             });
         }
     }
@@ -142,36 +148,36 @@ gold_per_tick = base + (2 * Farm level) * 1.00 + (1*research_bonus_percent) * Fa
 }
 
 function displayResources(){
-    let text = document.getElementById("goldDisplay")
+    let text = document.getElementById("goldDisplay")!
     text.innerText = "Gold: " + nf(gold)
     
     if(followers > 0){
-        text = document.getElementById("followersDisplay")
+        text = document.getElementById("followersDisplay")!
         text.innerText = "Followers: " + nf(followers)
     }else{
-        text = document.getElementById("followersDisplay")
+        text = document.getElementById("followersDisplay")!
         text.innerText = "???"
     }
 
     if(faith > 0){
-        text = document.getElementById("faithDisplay")
+        text = document.getElementById("faithDisplay")!
         text.innerText = "Faith: " + nf(faith)
     }else if(followers > 0){
-        text = document.getElementById("faithDisplay")
+        text = document.getElementById("faithDisplay")!
         text.innerText = "???"
     }else{
-        text = document.getElementById("faithDisplay")
+        text = document.getElementById("faithDisplay")!
         text.innerText = " "
     }
 
     if(ores > 0){
-        text = document.getElementById("oresDisplay")
+        text = document.getElementById("oresDisplay")!
         text.innerText = "Ores: " + nf(ores)
     }else if(faith > 0){
-        text = document.getElementById("oresDisplay")
+        text = document.getElementById("oresDisplay")!
         text.innerText = "???"
     }else{
-        text = document.getElementById("oresDisplay")
+        text = document.getElementById("oresDisplay")!
         text.innerText = " "
     }
 
@@ -186,7 +192,7 @@ async function loadAssets() {
     events = data.events
 }
 
-function gameEvent() {
+function gameEvent(): Event {
     let totalWeight = events.reduce((sum, event) => sum + event.weight, 0)
     let random = Math.random() * totalWeight
     let weightSum = 0
@@ -197,4 +203,5 @@ function gameEvent() {
             return event
         }
     }
+    return events[0]! //Returning something so can set return type as non null
 }

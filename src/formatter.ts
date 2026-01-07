@@ -1,4 +1,4 @@
-function nf(num) {
+export function nf(num: number) {
     num = Math.floor(num)
 
     if(num < 1000){
@@ -15,7 +15,7 @@ function nf(num) {
         {value: 1e21, symbol: "Sx"},
     ]
 
-    let item = match.findLast(function(obj){return num >= obj.value})
+    let item = match.findLast(function(obj){return num >= obj.value})!
 
     return (num/item.value).toFixed(2) + item.symbol
 
