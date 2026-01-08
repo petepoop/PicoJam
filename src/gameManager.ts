@@ -182,7 +182,6 @@ function displayResources(){
     }
 
 
-
     //TODO display research
 }
 
